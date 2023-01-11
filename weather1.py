@@ -1,12 +1,21 @@
 import sys
 from PySide2 import QtCore, QtScxml
 
+prefs = []
+
+# 定義
+
+
+def get_place(text):
+    for pref
+
+
 # Qtに関するおまじない
 app = QtCore.QCoreApplication()
-el  = QtCore.QEventLoop()
+el = QtCore.QEventLoop()
 
 # SCXMLファイルの読み込み
-sm  = QtScxml.QScxmlStateMachine.fromFile('states.scxml')
+sm = QtScxml.QScxmlStateMachine.fromFile('states.scxml')
 
 # 初期状態に遷移
 sm.start()
@@ -31,6 +40,16 @@ print("SYS>", sysutt)
 # ユーザ入力の処理
 while True:
    text = input("> ")
+
+   if current_state == "ask_place":
+       place = get_place(text)
+       if place !"":
+           sm.submitEvent("place")
+           el.processEvents()
+  elif current_state == "ask_date":
+      date = get_date(text)
+   
+   
    # ユーザ入力を用いて状態遷移
    sm.submitEvent(text)
    el.processEvents()
